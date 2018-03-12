@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, Image, ActivityIndicator, Linking } from 'react-native';
+import { ScrollView, StyleSheet, Text, View, Image, ActivityIndicator, Linking } from 'react-native';
 import { StackNavigator, NavigationActions } from 'react-navigation';
 import Input from './src/components/Input';
 import Button from './src/components/Button';
@@ -44,36 +44,39 @@ class LoginScreen extends React.Component {
 
   render() {
     return (
-      <View style={styles.container}>
-      <View style={styles.logoContainer}>
-        <Text style={styles.loginText}>Guru Maps</Text>
-        <Image source={require('./src/images/map-for-orientation.png')}/>
-      </View>
+      <ScrollView style={styles.container}>
 
-      <View style={styles.inputContainer}>
-        <Input
-          label="E-mail"
-          onChangeText={(email) => this.setState({email})}
-          keyboardType='email-address'
-          />
-        <Input
-          label="Password"
-          onChangeText={(password) => this.setState({password})}
-          secureTextEntry
-          />
-      </View>
+        <View style={styles.logoContainer}>
+          <Text style={styles.loginText}>Guru Maps</Text>
+          <Image source={require('./src/images/map-for-orientation.png')}/>
+        </View>
 
-      <View style={styles.buttonContainer}>
-        <Button title="Sign-up" onPress={() => this.props.navigation.navigate('Signup')}/>
-        <Button title="Login" onPress={() => this.onLoginPress()}/>
-      </View>
-      {this.state.authenticating ?
+        <View style={styles.inputContainer}>
+          <Input
+            label="E-mail"
+            onChangeText={(email) => this.setState({email})}
+            keyboardType='email-address'
+            />
+          <Input
+            label="Password"
+            onChangeText={(password) => this.setState({password})}
+            secureTextEntry
+            />
+        </View>
+
+        <View style={styles.buttonContainer}>
+          <Button title="Sign-up" onPress={() => this.props.navigation.navigate('Signup')}/>
+          <Button title="Login" onPress={() => this.onLoginPress()}/>
+        </View>
+
+        {this.state.authenticating ?
         <View style={styles.loading}>
           <ActivityIndicator
             animating={this.state.authenticating}
             size='large' />
         </View> : null}
-      </View>
+
+      </ScrollView>
     );
   }
 }
@@ -116,7 +119,7 @@ class SignupScreen extends React.Component{
 
   render(){
     return (
-      <View style={styles.container}>
+      <ScrollView style={styles.container}>
 
         <View style={styles.inputContainer}>
           <Text style={styles.infoText}>Enter login credentials to create a Guru Maps account!</Text>
@@ -142,13 +145,13 @@ class SignupScreen extends React.Component{
         </View>
 
         {this.state.authenticating ?
-          <View style={styles.loading}>
-            <ActivityIndicator
-              animating={this.state.authenticating}
-              size='large' />
-          </View> : null}
+        <View style={styles.loading}>
+          <ActivityIndicator
+            animating={this.state.authenticating}
+            size='large' />
+        </View> : null}
 
-      </View>
+      </ScrollView>
     );
   }
 }
@@ -188,7 +191,7 @@ class MainScreen extends React.Component {
 
   render(){
     return(
-      <View style={styles.container}>
+      <ScrollView style={styles.container}>
 
         <View style={styles.inputContainer}>
           <Text style={styles.infoText}>Enter a source and destination address to get directions for that route.</Text>
@@ -205,7 +208,7 @@ class MainScreen extends React.Component {
             onPress={() => this.onRoutePress()}/>
         </View>
 
-      </View>
+      </ScrollView>
     );
   }
 }
